@@ -182,14 +182,10 @@ public class ScanQRActivity extends AppCompatActivity implements SurfaceHolder.C
                         intent.putExtra("show_id", show_id);
                         startActivity(intent);
                     } else if (ticketsArray.length() > 0) {
-                        for (int i = 0; i < ordersArray.length(); i++) {
-                            JSONArray innerArray = ordersArray.getJSONArray(i);
-
-                            ordersArray.put(i, innerArray.get(0) + "|| Row: " + innerArray.get(1) + " | Column: " + innerArray.get(2) + " | TicketNumber: " + innerArray.get(3) + " | Used" + innerArray.get(4));
-                        }
-                        // If tickets list is not empty, open DetailsActivity with tickets list
-                        Intent intent = new Intent(ScanQRActivity.this, DetailsActivity.class);
-                        intent.putExtra("details", ticketsArray.toString());
+                        // If orders list is not empty, open DetailsActivity with orders list
+                        Intent intent = new Intent(ScanQRActivity.this, TicketsDetailsActivity.class);
+                        intent.putExtra("show_id", show_id);
+                        intent.putExtra("tickets", ticketsArray.toString());
                         startActivity(intent);
                     } else {
                         // If both lists are empty, display a toast
