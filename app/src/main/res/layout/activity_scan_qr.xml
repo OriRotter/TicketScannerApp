@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/main"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:padding="20dp"
-tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".MainActivity">
 
 
     <SurfaceView
@@ -50,4 +50,68 @@ tools:context=".MainActivity">
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageButton
+        android:id="@+id/flashlight_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/flashlight_off_check"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/send_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/input_text"
+        android:layout_alignParentEnd="true"
+        android:onClick="sendTextToServer"
+        android:src="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@+id/input_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/input_text"
+        app:layout_constraintTop_toTopOf="@+id/input_text" />
+
+    <EditText
+        android:id="@+id/input_text"
+        android:layout_width="324dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="100dp"
+        android:autofillHints=""
+        android:hint='מספר טלפון, מספר הזמנה וכ"ו'
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/go_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="92dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Go Back"
+        android:onClick="goBackToMainActivity"
+        android:rotationY="180"
+        android:src="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:onClick="goBackToMainActivity"
+        android:text="@string/back_button"
+        app:layout_constraintBottom_toBottomOf="@+id/go_back_button"
+        app:layout_constraintEnd_toStartOf="@+id/go_back_button"
+        app:layout_constraintTop_toTopOf="@+id/go_back_button"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

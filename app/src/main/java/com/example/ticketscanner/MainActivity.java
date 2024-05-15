@@ -3,10 +3,11 @@ package com.example.ticketscanner;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
+import javax.net.ssl.HttpsURLConnection;
 
 
 import org.json.JSONArray;
@@ -15,7 +16,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,16 +31,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         spinner = findViewById(R.id.spinner);
-
+        String serverUrl = getString(R.string.server_url);
         // Execute AsyncTask to fetch data from URL
-        new FetchDataTask().execute("http://192.168.137.193:25565/get_shows");
-        new FetchDataReturn().execute("http://192.168.137.193:25565/get_shows_id");
+        new FetchDataTask().execute(serverUrl +"/get_shows");
+        new FetchDataReturn().execute(serverUrl +"/get_shows_id");
         initViews();
     }
 
     private void initViews() {
         // Initialize other views or components here if needed
     }
+
 
     // AsyncTask to fetch data from URL
     private class FetchDataTask extends AsyncTask<String, Void, List<String>> {
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 URL url = new URL(urlString);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
 
                 InputStream inputStream = urlConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -74,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 bufferedReader.close();
                 inputStream.close();
                 urlConnection.disconnect();
-            } catch (IOException | JSONException e) {
-                e.printStackTrace();
+            } catch (IOException | JSONException ignored) {
             }
 
             return dataList;
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 URL url = new URL(urlString);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
 
                 InputStream inputStream = urlConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -122,8 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 bufferedReader.close();
                 inputStream.close();
                 urlConnection.disconnect();
-            } catch (IOException | JSONException e) {
-                e.printStackTrace();
+            } catch (IOException | JSONException ignored) {
             }
 
             return dataList;
@@ -145,8 +144,7 @@ public class MainActivity extends AppCompatActivity {
         // In this case, I'll just print the list for demonstration
         findViewById(R.id.scanButton).setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, ScanQRActivity.class);
-            Log.d("seeME",dataList.get((int) spinner.getSelectedItemId()));
-            i.putExtra("info", dataList.get((int) spinner.getSelectedItemId()));
+            i.putExtra("show_id", dataList.get((int) spinner.getSelectedItemId()));
             startActivity(i);
             finish();  // ending this activity
         });

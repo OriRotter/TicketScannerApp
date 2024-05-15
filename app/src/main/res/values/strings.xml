@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">TicketScanner</string>
-    <string name="title_activity_main2">MainActivity2</string>
+    <string name="app_name">סריקת כרטיסים</string>
+    <string name="title_activity_main2">בחר מופע</string>
+    <string name="server_url">https://or1.pythonanywhere.com</string>
+    <string name="v_text">תהנה!</string>
+    <string name="x_text">כרטיס סרוק</string>
+    <string name="back_button">חזרה לבחירת מופע</string>
+    <string name="not_found_text">לא נמצא</string>
 </resources>

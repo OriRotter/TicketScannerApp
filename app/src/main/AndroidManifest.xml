@@ -33,6 +33,16 @@
         <activity
             android:name=".ScanQRActivity"
             android:label="Scan QR Code" />
+        <activity android:name=".VActivity"
+            android:label="Have fun!"/>
+        <activity android:name=".XActivity"
+            android:label="Scanned!"/>
+        <activity android:name=".NotFoundActivity"
+            android:label="Ticket not found"/>
+        <activity android:name=".DetailsActivity"
+            android:label="Search"/>
+        <activity android:name=".TicketsDetailsActivity"
+            android:label="Tickets"/>
     </application>
 
 </manifest>
