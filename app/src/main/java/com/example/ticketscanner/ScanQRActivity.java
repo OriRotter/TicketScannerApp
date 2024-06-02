@@ -53,6 +53,7 @@ public class ScanQRActivity extends AppCompatActivity implements SurfaceHolder.C
     private boolean isFlashlightOn = false;
     private String serverUrl;
     private String show_id = "";
+    private String password = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class ScanQRActivity extends AppCompatActivity implements SurfaceHolder.C
         setContentView(R.layout.activity_scan_qr);
         show_id = String.valueOf(getIntent().getStringExtra("show_id"));
         serverUrl = getString(R.string.server_url);
+        password = getString(R.string.password);
         mFlashlightButton = findViewById(R.id.flashlight_button);
         mFlashlightButton.setOnClickListener(v -> toggleFlashlight());
         mSurfaceView = findViewById(R.id.camera_preview);
@@ -129,6 +131,7 @@ public class ScanQRActivity extends AppCompatActivity implements SurfaceHolder.C
 
                 // Build query parameters
                 Map<String, String> parameters = new HashMap<>();
+                parameters.put("password", password);
                 parameters.put("search", search);
                 parameters.put("showID", show_id);
 
@@ -390,6 +393,7 @@ public class ScanQRActivity extends AppCompatActivity implements SurfaceHolder.C
 
                 // Build query parameters
                 Map<String, String> parameters = new HashMap<>();
+                parameters.put("password", password);
                 parameters.put("hash", qrCodeData);
                 parameters.put("showID", show_id);
 

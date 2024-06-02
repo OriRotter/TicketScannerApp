@@ -26,6 +26,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class TicketsDetailsActivity extends AppCompatActivity {
     private String serverUrl;
     private String show_id = "";
+    private String password = "";
 
     private List<List<String>> tickets;
 
@@ -35,6 +36,7 @@ public class TicketsDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details_tickets);
         show_id = String.valueOf(getIntent().getStringExtra("show_id"));
         serverUrl = getString(R.string.server_url);
+        password = getString(R.string.password);
 
         // Retrieve the JSON string of tickets from the intent
         String jsonTickets = getIntent().getStringExtra("tickets");
@@ -90,6 +92,7 @@ public class TicketsDetailsActivity extends AppCompatActivity {
 
                 // Build query parameters
                 Map<String, String> parameters = new HashMap<>();
+                parameters.put("password", password);
                 parameters.put("hash", hash);
                 parameters.put("showID", show_id);
 

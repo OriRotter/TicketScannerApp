@@ -27,14 +27,14 @@ import javax.net.ssl.HttpsURLConnection;
 public class DetailsActivity extends AppCompatActivity {
     private String serverUrl;
     private String show_id = "";
-
+    private String password = "";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         show_id = String.valueOf(getIntent().getStringExtra("show_id"));
         serverUrl = getString(R.string.server_url);
-
+        password = getString(R.string.password);
         // Get list data passed from ScanQRActivity
         String listData = getIntent().getStringExtra("details");
 
@@ -97,6 +97,7 @@ public class DetailsActivity extends AppCompatActivity {
 
                 // Build query parameters
                 Map<String, String> parameters = new HashMap<>();
+                parameters.put("password", password);
                 parameters.put("order_number", order_number);
                 parameters.put("showID", show_id);
 
